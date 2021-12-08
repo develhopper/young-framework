@@ -1,13 +1,9 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
+@extends('base.html')
+@section('body')
     <h1>{{$title}}</h1>
-    <pre>{{$body}}</pre>
-</body>
-</html>
+    <ul>
+        @foreach($countries as $country)
+            <li><a href="/country/{{$country['Code']}}">{{$country['Name']}}</a></li>
+        @endforeach
+    </ul>
+@section('body')

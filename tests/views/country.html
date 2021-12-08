@@ -1,0 +1,11 @@
+@extends('base.html')
+
+@section('body')
+<h1>{{$country->Name}}</h1>
+
+<ul>
+    @foreach($cities as $city)
+        <li>{{$city->Name}}</li>
+    @endforeach
+</ul>
+@endsection

@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "0b5b6abc758ad89275ffcbb9b49b1cd2",
+    "content-hash": "cbb460020f7ca1413319bbd3b2f89af3",
     "packages": [
         {
             "name": "develhopper/denver",
@@ -79,6 +79,49 @@
                 "source": "https://github.com/develhopper/Primal/tree/1.4.3"
             },
             "time": "2020-11-07T14:35:26+00:00"
+        },
+        {
+            "name": "develhopper/qbuilder",
+            "version": "2.4.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/develhopper/Qbuilder.git",
+                "reference": "f942018776b3f0a99c56bb680fa9809265ecf0b2"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/develhopper/Qbuilder/zipball/f942018776b3f0a99c56bb680fa9809265ecf0b2",
+                "reference": "f942018776b3f0a99c56bb680fa9809265ecf0b2",
+                "shasum": ""
+            },
+            "require": {
+                "develhopper/denver": "^1.1"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "^9.3"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-0": {
+                    "QB": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "GPL-3.0-only"
+            ],
+            "authors": [
+                {
+                    "name": "develhoper",
+                    "email": "develhoper.0@gmail.com"
+                }
+            ],
+            "description": "Yet another php query builder library",
+            "support": {
+                "issues": "https://github.com/develhopper/Qbuilder/issues",
+                "source": "https://github.com/develhopper/Qbuilder/tree/2.4.2"
+            },
+            "time": "2021-12-08T16:11:30+00:00"
         }
     ],
     "packages-dev": [],
