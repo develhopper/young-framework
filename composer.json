@@ -14,5 +14,8 @@
             "email": "alireza.tjd77@gmail.com"
         }
     ],
-    "require": {}
+    "require": {
+        "develhopper/primal": "^1.4",
+        "develhopper/denver": "^1.2"
+    }
 }

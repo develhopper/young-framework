@@ -5,6 +5,7 @@ use Young\Framework\Exceptions\Exception;
 use Young\Framework\Http\Request;
 use Young\Framework\Http\Response;
 use Young\Framework\Router\Router;
+use Denver\Env;
 
 class Kernel{
     private $router;
@@ -19,6 +20,12 @@ class Kernel{
     {
         session_start();
         require_once $base_path . "/app/Kernel.php";
+        if(file_exists($base_path."/.env")){
+            Env::setup($base_path."/.env");
+        }
+        if(isset($config['environment'])){
+            Env::fromArray($config['environment']);
+        }
         $this->middlewares = $config['middlewares'];
         $this->router = Router::getInstance();
         if(isset($config['routes'])){

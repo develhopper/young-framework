@@ -4,8 +4,83 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "14cdab7485f74df4558ee716db386174",
-    "packages": [],
+    "content-hash": "0b5b6abc758ad89275ffcbb9b49b1cd2",
+    "packages": [
+        {
+            "name": "develhopper/denver",
+            "version": "1.2.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/develhopper/Denver.git",
+                "reference": "2c4f551e613fa9afa1f752f38b6590a6a76bca6a"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/develhopper/Denver/zipball/2c4f551e613fa9afa1f752f38b6590a6a76bca6a",
+                "reference": "2c4f551e613fa9afa1f752f38b6590a6a76bca6a",
+                "shasum": ""
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Denver\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "GPL-3.0-only"
+            ],
+            "authors": [
+                {
+                    "name": "develhopper",
+                    "email": "alireza.tjd77@gmail.com"
+                }
+            ],
+            "description": "Simple php dotEnv manager (DENVER)",
+            "support": {
+                "issues": "https://github.com/develhopper/Denver/issues",
+                "source": "https://github.com/develhopper/Denver/tree/1.2.1"
+            },
+            "time": "2021-12-08T14:11:47+00:00"
+        },
+        {
+            "name": "develhopper/primal",
+            "version": "1.4.3",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/develhopper/Primal.git",
+                "reference": "af13109c190084c3b8c370bda84edab19c8696bf"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/develhopper/Primal/zipball/af13109c190084c3b8c370bda84edab19c8696bf",
+                "reference": "af13109c190084c3b8c370bda84edab19c8696bf",
+                "shasum": ""
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Primal\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "GPL-3.0-only"
+            ],
+            "authors": [
+                {
+                    "name": "develhopper",
+                    "email": "alireza.tjd77@gmail.com"
+                }
+            ],
+            "description": "free and open source php templating system",
+            "support": {
+                "issues": "https://github.com/develhopper/Primal/issues",
+                "source": "https://github.com/develhopper/Primal/tree/1.4.3"
+            },
+            "time": "2020-11-07T14:35:26+00:00"
+        }
+    ],
     "packages-dev": [],
     "aliases": [],
     "minimum-stability": "stable",

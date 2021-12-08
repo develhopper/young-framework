@@ -1,8 +1,10 @@
 <?php
 namespace app\Http\controllers;
 
-class TestController{
+use Young\Framework\Http\Controller;
+
+class TestController extends Controller{
     public function index(){
-        echo "hello world";
+        $this->view("index.html", ["title" => "Page title", "body" => "page body"]);
     }
 }
