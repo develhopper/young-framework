@@ -47,4 +47,9 @@ class TestController extends Controller{
             return $this->json($validator->messages,400);
         }
     }
+
+    public function serialize(){
+        $model = (new Country)->all();
+        return $this->json($model);
+    }
 }
