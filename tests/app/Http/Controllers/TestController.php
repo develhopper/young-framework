@@ -5,6 +5,7 @@ use app\Http\Models\Country;
 use Young\Framework\Exceptions\Exception;
 use Young\Framework\Http\Controller;
 use Young\Framework\Http\Request;
+use Young\Modules\Validation\Validator;
 
 class TestController extends Controller{
     public function index(Request $request){
@@ -28,5 +29,22 @@ class TestController extends Controller{
         asset();
         echo "<br>";
         myFunction();
+    }
+
+    public function register(Request $request){
+        $validator = Validator::getInstance();
+
+        $rules = [
+            "username" => "required,min:4",
+            "password" => "required,min:8",
+            "email" => "required,email",
+            "age" => "number,min:18,max:100"
+        ];
+
+        if($validator->validate($request->all(),$rules)){
+            $this->json(["message" => "valid"],200);
+        }else{
+            $this->json($validator->messages,400);
+        }
     }
 }

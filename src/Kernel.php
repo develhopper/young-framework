@@ -5,6 +5,7 @@ use Young\Framework\Exceptions\Exception;
 use Young\Framework\Http\Request;
 use Young\Framework\Http\Response;
 use Young\Framework\Router\Router;
+use Young\Modules\Validation\Validator;
 use Denver\Env;
 
 class Kernel{
@@ -44,6 +45,11 @@ class Kernel{
             }
         }
         include __DIR__."/Utils/global_functions.php";
+        
+        if(isset($config['validation_rules'])){
+            $validator = Validator::getInstance();
+            $validator->load($config['validation_rules']);
+        }
     }
 
     public function handle(Request $request){

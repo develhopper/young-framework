@@ -17,5 +17,8 @@ return $config = [
     ],
     "global_function_files" => [
         __DIR__."/util/global_functions.php"
+    ],
+    "validation_rules" => [
+        app\Validations\NumberValidation::class
     ]
 ];

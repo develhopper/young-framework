@@ -17,6 +17,7 @@
     "require": {
         "develhopper/primal": "^1.4",
         "develhopper/denver": "^1.2",
-        "develhopper/qbuilder": "^2.4"
+        "develhopper/qbuilder": "^2.4",
+        "develhopper/validator": "^1.0"
     }
 }
