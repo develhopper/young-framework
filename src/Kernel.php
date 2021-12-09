@@ -19,20 +19,31 @@ class Kernel{
     public function __construct(string $base_path)
     {
         session_start();
-        require_once $base_path . "/app/Kernel.php";
+        include $base_path . "/app/Kernel.php";
         if(file_exists($base_path."/.env")){
             Env::setup($base_path."/.env");
         }
         if(isset($config['environment'])){
             Env::fromArray($config['environment']);
         }
+        
         $this->middlewares = $config['middlewares'];
         $this->router = Router::getInstance();
+        
         if(isset($config['routes'])){
             foreach($config['routes'] as $route => $options){
                 $this->router->register($base_path."/routes/$route",$options);
             }
         }
+
+        if(isset($config['global_function_files'])){
+            foreach($config['global_function_files'] as $file){
+                if(file_exists($file)){
+                    include $file;
+                }
+            }
+        }
+        include __DIR__."/Utils/global_functions.php";
     }
 
     public function handle(Request $request){

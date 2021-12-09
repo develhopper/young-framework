@@ -12,6 +12,10 @@ return $config = [
     "environment" => [
         "BASE_DIR" => realpath(__DIR__."/../"),
         "VIEWS_DIR" => realpath(__DIR__."/../views"),
-        "CACHE_DIR" => realpath(__DIR__."/../storage/cache")
+        "CACHE_DIR" => realpath(__DIR__."/../storage/cache"),
+        "BASE_URL" => $_SERVER["SERVER_NAME"]
+    ],
+    "global_function_files" => [
+        __DIR__."/util/global_functions.php"
     ]
 ];

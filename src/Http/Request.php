@@ -34,6 +34,10 @@ class Request{
         return $method==$this->method()?true:false;
     }
 
+    public function isRoute($route){
+        return preg_match('/'.$route.'/',$this->url);
+    }
+
     public function method(){
         $method = $_SERVER['REQUEST_METHOD'];
         if($method =="POST" && $this->has('_method')){

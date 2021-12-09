@@ -22,4 +22,11 @@ class TestController extends Controller{
         }
         $this->view("country.html", ["title" => $country->Name, "country" => $country, "cities" => $country->cities()]);
     }
+
+    public function global_functions(){
+        echo "<br>";
+        asset();
+        echo "<br>";
+        myFunction();
+    }
 }
