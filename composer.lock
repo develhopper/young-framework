@@ -45,16 +45,16 @@
         },
         {
             "name": "develhopper/primal",
-            "version": "1.4.3",
+            "version": "1.4.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/develhopper/Primal.git",
-                "reference": "af13109c190084c3b8c370bda84edab19c8696bf"
+                "reference": "37126e1eef4c939da9193f82a2430e79a4bf5242"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/develhopper/Primal/zipball/af13109c190084c3b8c370bda84edab19c8696bf",
-                "reference": "af13109c190084c3b8c370bda84edab19c8696bf",
+                "url": "https://api.github.com/repos/develhopper/Primal/zipball/37126e1eef4c939da9193f82a2430e79a4bf5242",
+                "reference": "37126e1eef4c939da9193f82a2430e79a4bf5242",
                 "shasum": ""
             },
             "type": "library",
@@ -76,9 +76,9 @@
             "description": "free and open source php templating system",
             "support": {
                 "issues": "https://github.com/develhopper/Primal/issues",
-                "source": "https://github.com/develhopper/Primal/tree/1.4.3"
+                "source": "https://github.com/develhopper/Primal/tree/1.4.4"
             },
-            "time": "2020-11-07T14:35:26+00:00"
+            "time": "2021-12-09T15:07:14+00:00"
         },
         {
             "name": "develhopper/qbuilder",

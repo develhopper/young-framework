@@ -20,14 +20,12 @@ class Controller{
     public function view($name,$params=[]){
         $primal=Primal::getInstance(["views_dir"=>getenv('VIEWS_DIR'),
         "cache_dir"=>getenv('CACHE_DIR')]);
-        $primal->view($name,$params);
+        return $primal->view($name,$params);
     }
 
-    public function json(array $params,$responseCode){
-        header('Content-Type: application/json');
-        http_response_code($responseCode);
-        echo json_encode($params,JSON_PRETTY_PRINT);
-		exit;
+    public function json(array $arr,$responseCode=200){
+        $json = json_encode($arr,JSON_PRETTY_PRINT);
+        return new Response($json,Response::JSON,$responseCode);
     }
     
     public function redirect($route){

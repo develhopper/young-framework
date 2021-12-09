@@ -10,6 +10,7 @@ use Denver\Env;
 
 class Kernel{
     private $router;
+    private $callback;
     private $controller;
     private $method;
     private $params = [];
@@ -56,23 +57,41 @@ class Kernel{
         try{
             $this->route = $this->router->find($request->url);
             $this->request=$request;
-            $this->Routemiddleware();
-        }catch(Exception $e){
-            echo $e->getMessage();
-            return;
-        }
+            $this->runMiddlewares();
+            
+            $this->setController();
+
+            array_push($this->params,$request);
         
-        $this->setController();
-        array_push($this->params,$request);
-        $response=new Response();
-        $response->controller=$this->controller;
-        $response->method=$this->method;
-        $response->params=$this->params;
-        $response->route=$this->route;
-        return $response;
+            $response=new Response();
+
+            $content = call_user_func_array($this->callback,$this->params);
+            if(!$content){
+                $message = "<br>Invalid return type in {$this->controller}::{$this->method}()<br>";
+                throw new Exception($message,500);
+            }
+            if($content instanceof Response){
+                return $content;
+            }if($content instanceof Exception){
+                throw $content;
+            }
+            else{
+                $response->content=$content;
+            }
+            return $response;
+        }catch(Exception $e){
+            $response = new Response();
+            $response->code = $e->code;
+            if(getenv("DEBUG")){
+                $response->content = "<pre style='color:red'>".$e->__toString()."</pre>";
+            }else{
+                $response->content = $e->getMessage();
+            }
+            return $response;
+        }
     }
 
-    private function Routemiddleware(){
+    private function runMiddlewares(){
         $route_middlewares = explode(',', $this->route['middlewares']);
         foreach($route_middlewares as $middleware){
             if(isset($this->middlewares[$middleware])){
@@ -87,6 +106,7 @@ class Kernel{
         $this->controller = "app\\Http\Controllers\\" . $this->route['controller'];
         $this->method = $this->route['function'];
         $this->setParams();
+        $this->callback = [new $this->controller,$this->method];
     }
 
     private function setParams()
