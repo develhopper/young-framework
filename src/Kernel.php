@@ -7,6 +7,7 @@ use Young\Framework\Http\Response;
 use Young\Framework\Router\Router;
 use Young\Modules\Validation\Validator;
 use Denver\Env;
+use Young\Framework\Exceptions\HttpException;
 use Young\Framework\Utils\Reflector;
 
 class Kernel{
@@ -72,7 +73,7 @@ class Kernel{
 
             
             $response=new Response();
-            
+
             $content = $this->reflector->invoke();
 
             if(!$content){
@@ -91,7 +92,7 @@ class Kernel{
         }catch(Exception $e){
             $response = new Response();
             $response->code = $e->code;
-            if(getenv("DEBUG")){
+            if(getenv("DEBUG") && ! $e instanceof HttpException){
                 $response->content = "<pre style='color:red'>".$e->__toString()."</pre>";
             }else{
                 $response->content = $e->getMessage();

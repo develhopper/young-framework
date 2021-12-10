@@ -2,6 +2,7 @@
 namespace Young\Framework\Router;
 
 use Young\Framework\Exceptions\Exception;
+use Young\Framework\Exceptions\HttpException;
 use Young\Framework\Http\Request;
 
 class Router{
@@ -56,7 +57,7 @@ class Router{
                 return $r;
             }
         }
-        throw new Exception("Route $name not found",404);
+        throw new HttpException("Route $name not found",404);
     }
 
     private function method_check($route, $reqeust_method)

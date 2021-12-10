@@ -49,4 +49,8 @@ class TestController extends Controller{
         $model = (new Country)->all();
         return $this->json($model);
     }
+
+    public function new_country(Request $request){
+        return $this->view("new.html");
+    }
 }

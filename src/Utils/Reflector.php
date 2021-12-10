@@ -4,6 +4,7 @@ namespace Young\Framework\Utils;
 use ReflectionClass;
 use ReflectionParameter;
 use Young\Framework\Exceptions\Exception;
+use Young\Framework\Exceptions\HttpException;
 use Young\Framework\Http\Model;
 use Young\Framework\Http\Request;
 
@@ -70,7 +71,7 @@ class Reflector{
                 $key = $this->parameters[$parameter_name];
                 $result = $model->find($key);
                 if(!$result)
-                    throw new Exception("404 Not found", 404);
+                    throw new HttpException("404 Not found", 404);
                 return $result;
             }
         }

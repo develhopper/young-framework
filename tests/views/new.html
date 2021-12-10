@@ -1,0 +1,10 @@
+@extends('base.html')
+
+@section('body')
+<form action="" class="form" method="POST">
+    {{csrf_field()}}
+    <input type="text" name="code" placeholder="Country Code" class="form-control">
+    <input type="text" name="name" placeholder="Country Name" class="form-control">
+    <input type="submit" value="Send" class="btn btn-primary" value="submit">
+</form>
+@endsection
