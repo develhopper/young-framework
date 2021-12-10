@@ -1,6 +1,11 @@
 <?php
 
 return $config = [
+    "kernel" => [
+        "namespaces" =>[
+            "controllers" => "app\\Http\\Controllers"
+        ]
+    ],
     "middlewares" => [
         "csrf" => app\Http\Middlewares\CsrfMiddleware::class,
         "test" => app\Http\Middlewares\TestMiddleware::class

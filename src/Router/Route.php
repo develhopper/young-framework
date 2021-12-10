@@ -11,7 +11,9 @@ class Route
         $route=$router->prefix.$route;
         $regex = preg_replace("/\{\w*\}/i", '(.+)', $route);
         $regex = str_replace("/", "\/", $regex);
-
+        
+        $parameters= [];
+        preg_match_all("/\{(\w*?)\}/",$route,$parameters);
         $controller = explode("@", $controller);
         
         $router->add($method,[
@@ -20,6 +22,7 @@ class Route
             'regex' => $regex,
             'method' => $method,
             'middlewares'=>$router->middlewares . $middleware,
+            'parameters' => $parameters[1]
         ]);
     }
 

@@ -82,16 +82,16 @@
         },
         {
             "name": "develhopper/qbuilder",
-            "version": "2.4.2",
+            "version": "2.4.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/develhopper/Qbuilder.git",
-                "reference": "f942018776b3f0a99c56bb680fa9809265ecf0b2"
+                "reference": "078becc6387e06d2f5dd89e2426ef1d834c108ea"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/develhopper/Qbuilder/zipball/f942018776b3f0a99c56bb680fa9809265ecf0b2",
-                "reference": "f942018776b3f0a99c56bb680fa9809265ecf0b2",
+                "url": "https://api.github.com/repos/develhopper/Qbuilder/zipball/078becc6387e06d2f5dd89e2426ef1d834c108ea",
+                "reference": "078becc6387e06d2f5dd89e2426ef1d834c108ea",
                 "shasum": ""
             },
             "require": {
@@ -119,9 +119,9 @@
             "description": "Yet another php query builder library",
             "support": {
                 "issues": "https://github.com/develhopper/Qbuilder/issues",
-                "source": "https://github.com/develhopper/Qbuilder/tree/2.4.2"
+                "source": "https://github.com/develhopper/Qbuilder/tree/2.4.3"
             },
-            "time": "2021-12-08T16:11:30+00:00"
+            "time": "2021-12-10T08:56:31+00:00"
         },
         {
             "name": "develhopper/validator",

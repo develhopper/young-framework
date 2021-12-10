@@ -2,6 +2,7 @@
 namespace app\Http\controllers;
 
 use app\Http\Models\Country;
+use app\Http\Requests\FileRequest;
 use Young\Framework\Exceptions\Exception;
 use Young\Framework\Http\Controller;
 use Young\Framework\Http\Request;
@@ -16,11 +17,7 @@ class TestController extends Controller{
         return $this->view("index.html", ["title" => "List of countries", "countries" => $countries]);
     }
 
-    public function get($code){
-        $country = (new Country())->select()->where("Code", $code)->first();
-        if(!$country){
-            throw new Exception("404 Not Found", 404);
-        }
+    public function get(Country $country, FileRequest $request){
         return $this->view("country.html", ["title" => $country->Name, "country" => $country, "cities" => $country->cities()]);
     }
 

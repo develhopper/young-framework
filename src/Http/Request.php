@@ -45,4 +45,12 @@ class Request{
         }
         return $method;
     }
+
+    public function rules(){
+
+    }
+
+    public function validate(){
+        
+    }
 }

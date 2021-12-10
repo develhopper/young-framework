@@ -51,7 +51,9 @@ if(!function_exists('session')){
 
 if(!function_exists('die_dump')){   
     function die_dump(...$var){
+        echo "<pre>";
         var_dump($var);
+        echo "</pre>";
         die;
     }
 }

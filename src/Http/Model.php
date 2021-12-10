@@ -3,8 +3,6 @@ namespace Young\Framework\Http;
 
 use JsonSerializable;
 use QB\QBuilder;
-use ReflectionClass;
-use ReflectionProperty;
 
 class Model extends Qbuilder implements JsonSerializable{
     protected $hidden = [];
