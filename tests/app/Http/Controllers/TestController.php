@@ -2,6 +2,7 @@
 namespace app\Http\controllers;
 
 use app\Http\Models\Country;
+use app\Http\Requests\CountryRequest;
 use app\Http\Requests\FileRequest;
 use Young\Framework\Exceptions\Exception;
 use Young\Framework\Http\Controller;
@@ -50,7 +51,10 @@ class TestController extends Controller{
         return $this->json($model);
     }
 
-    public function new_country(Request $request){
+    public function new_country(CountryRequest $request){
+        if(!$request->valid()){
+            var_dump($request->errors());
+        }
         return $this->view("new.html");
     }
 }

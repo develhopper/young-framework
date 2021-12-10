@@ -1,12 +1,15 @@
 <?php
 namespace Young\Framework\Http;
 
+use Young\Modules\Validation\Validator;
+
 class Request{
     public $url;
-
+    private Validator $validator;
     public function __construct()
     {
         $this->url = trim($_SERVER['REQUEST_URI'],"/");
+        $this->validator = Validator::getInstance();
     }
 
     public function __get($key){
@@ -47,10 +50,14 @@ class Request{
     }
 
     public function rules(){
-
+        return [];
     }
 
-    public function validate(){
-        
+    public function errors(){
+        return $this->validator->messages;
+    }
+
+    public function valid(){
+        return $this->validator->validate($this->all(),$this->rules());
     }
 }
