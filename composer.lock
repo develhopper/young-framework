@@ -125,16 +125,16 @@
         },
         {
             "name": "develhopper/validator",
-            "version": "1.0.3",
+            "version": "1.1.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/develhopper/young-validator.git",
-                "reference": "b8a7d5c18e2d72459b96c84dadfa4ea26bfa06c5"
+                "reference": "4940e12515a02a0888a87ef68e93ab49ec219bd8"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/develhopper/young-validator/zipball/b8a7d5c18e2d72459b96c84dadfa4ea26bfa06c5",
-                "reference": "b8a7d5c18e2d72459b96c84dadfa4ea26bfa06c5",
+                "url": "https://api.github.com/repos/develhopper/young-validator/zipball/4940e12515a02a0888a87ef68e93ab49ec219bd8",
+                "reference": "4940e12515a02a0888a87ef68e93ab49ec219bd8",
                 "shasum": ""
             },
             "type": "library",
@@ -156,9 +156,9 @@
             "description": "PHP input validator",
             "support": {
                 "issues": "https://github.com/develhopper/young-validator/issues",
-                "source": "https://github.com/develhopper/young-validator/tree/1.0.3"
+                "source": "https://github.com/develhopper/young-validator/tree/1.1.0"
             },
-            "time": "2021-12-09T13:47:12+00:00"
+            "time": "2021-12-11T05:21:57+00:00"
         }
     ],
     "packages-dev": [],

@@ -1,6 +1,8 @@
 <?php
 
+use Young\Framework\Exceptions\Exception;
 use Young\Framework\Http\Session;
+use Young\Framework\Kernel;
 
 if(!function_exists('asset')){
     function asset($name){
@@ -55,5 +57,21 @@ if(!function_exists('die_dump')){
         var_dump($var);
         echo "</pre>";
         die;
+    }
+}
+
+if(!function_exists('config')){
+    function config($key){
+        $keys = explode(".",$key);
+        $result = Kernel::$config;
+        foreach($keys as $key){
+            if(isset($result[$key])){
+                $result = $result[$key];
+            }else{
+                throw new Exception("Invalid config key $key");
+            }
+        }
+
+        return $result;
     }
 }

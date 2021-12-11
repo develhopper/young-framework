@@ -1,10 +1,8 @@
 <?php
 
 return $config = [
-    "kernel" => [
-        "namespaces" =>[
+    "namespaces" =>[
             "controllers" => "app\\Http\\Controllers"
-        ]
     ],
     "middlewares" => [
         "csrf" => app\Http\Middlewares\CsrfMiddleware::class,
@@ -24,6 +22,13 @@ return $config = [
         __DIR__."/util/global_functions.php"
     ],
     "validation_rules" => [
-        app\Validations\NumberValidation::class
+        app\Validations\NumberValidation::class,
+        app\Validations\FileValidation::class,
+        app\Validations\TypeValidation::class,
+        app\Validations\SizeValidation::class
+    ],
+    "storage" => [
+        "public" => realpath(__DIR__."/../public/"),
+        "private" => realpath(__DIR__."/../storage/")
     ]
 ];

@@ -7,8 +7,8 @@ class CountryRequest extends Request{
 
     public function rules(){
         return [
-            "code" => "required,string,min:2",
-            "name" => "required,string"
+            "code" => "required|string|min:2",
+            "name" => "required|string"
         ];
     }
 }

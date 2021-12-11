@@ -12,15 +12,9 @@ use Young\Framework\Utils\Reflector;
 
 class Kernel{
     private $router;
-    private $callback;
-    private $controller;
-    private $method;
-    private $params = [];
     private $route;
-    private $request;
     private $middlewares;
-    private $reflector;
-    private $config;
+    public static $config;
 
     public function __construct(string $base_path)
     {
@@ -37,9 +31,7 @@ class Kernel{
         
         include $base_path . "/app/Kernel.php";
         
-        if(isset($config['kernel'])){
-            $this->config = $config['kernel'];
-        }
+        self::$config = $config;
         
         if(file_exists($base_path."/.env")){
             Env::setup($base_path."/.env");
@@ -69,15 +61,15 @@ class Kernel{
             
             $this->run_middlewares($request);
             
-            $this->init_reflector($request);
+            $reflector = $this->init_reflector($request);
 
             
             $response=new Response();
 
-            $content = $this->reflector->invoke();
+            $content = $reflector->invoke();
 
             if(!$content){
-                $message = "<br>Invalid return type in {$this->controller}::{$this->method}()<br>";
+                $message = "<br>Invalid return type in {$reflector->class}::{$reflector->method}()<br>";
                 throw new Exception($message,500);
             }
             if($content instanceof Response){
@@ -112,12 +104,15 @@ class Kernel{
     }
 
     private function init_reflector($request){
-           $this->reflector = new Reflector();
-           $namespace = $this->config['namespaces']['controllers'];
-           $this->reflector->class = $namespace."\\".$this->route['controller'];
-           $this->reflector->method = $this->route['function'];
-           $this->reflector->parameters = $this->get_url_parameteres($request);
-           $this->reflector->request = $request;
+           $reflector = new Reflector();
+
+           $namespace = config("namespaces.controllers");
+
+           $reflector->class = $namespace."\\".$this->route['controller'];
+           $reflector->method = $this->route['function'];
+           $reflector->parameters = $this->get_url_parameteres($request);
+           $reflector->request = $request;
+           return $reflector;
     }
 
     private function get_url_parameteres($request)

@@ -57,4 +57,18 @@ class TestController extends Controller{
         }
         return $this->view("new.html");
     }
+
+    public function upload(Request $request){
+        $rules = [
+            "file" => "required|file|type:jpg,png,gif|size:500kb"
+        ];
+        if(!$request->files()->validate($rules)){
+            return $this->json($request->errors());
+        }
+        if($request->upload("file","public/uploads/pic.jpg")){
+            return $this->json(['message' => 'uploaded']);
+        }else{
+            return $this->json(['message' => 'error']);
+        }
+    }
 }

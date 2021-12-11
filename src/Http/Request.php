@@ -1,6 +1,9 @@
 <?php
 namespace Young\Framework\Http;
 
+use Young\Framework\Exceptions\Exception;
+use Young\Framework\Http\Requests\FileRequest;
+use Young\Framework\Utils\Filesystem;
 use Young\Modules\Validation\Validator;
 
 class Request{
@@ -59,5 +62,27 @@ class Request{
 
     public function valid(){
         return $this->validator->validate($this->all(),$this->rules());
+    }
+
+    public function validate($rules){
+        return $this->validator->validate($this->all(),$rules);
+    }
+
+    public function files($key=null){
+        $file_request = new FileRequest();
+        if($key == null)
+            return $file_request;
+        if($key && isset($_FILES[$key])){
+            return $file_request->$key;
+        }else{
+            throw new Exception("Invalid key \$_FILE[$key]");
+        }
+    }
+
+    // dst: storage_name/path => public/uploads or private/upload
+    public function upload($name,$dst){
+        $file = $this->files($name)->tmp_name;
+        $filesystem = new Filesystem();
+        return $filesystem->mv($file,$dst);
     }
 }
