@@ -7,6 +7,7 @@ use Young\Framework\Http\Response;
 use Young\Framework\Router\Router;
 use Young\Modules\Validation\Validator;
 use Denver\Env;
+use Primal\Primal;
 use Young\Framework\Exceptions\HttpException;
 use Young\Framework\Utils\Reflector;
 
@@ -20,18 +21,19 @@ class Kernel{
     {
         session_start();
         
-        if(isset($config['global_function_files'])){
-            foreach($config['global_function_files'] as $file){
-                if(file_exists($file)){
-                    include $file;
-                }
-            }
-        }
-        include __DIR__."/Utils/global_functions.php";
+        $this->load_configs($base_path);
+
+        $this->load_functions();
         
+        $this->init_modules();
+        $this->load_router();
+    }
+
+    public function load_configs($base_path){
         include $base_path . "/app/Kernel.php";
         
         self::$config = $config;
+        
         
         if(file_exists($base_path."/.env")){
             Env::setup($base_path."/.env");
@@ -39,19 +41,36 @@ class Kernel{
         if(isset($config['environment'])){
             Env::fromArray($config['environment']);
         }
-        
-        $this->middlewares = $config['middlewares'];
-        $this->router = Router::getInstance();
-        
-        if(isset($config['routes'])){
-            foreach($config['routes'] as $route => $options){
-                $this->router->register($base_path."/routes/$route",$options);
+    }
+
+    public function load_functions(){
+        if(isset(self::$config['global_function_files'])){
+            foreach(self::$config['global_function_files'] as $file){
+                if(file_exists($file)){
+                    require_once $file;
+                }
             }
         }
-        
-        if(isset($config['validation_rules'])){
+        require_once __DIR__."/Utils/global_functions.php";
+    }
+
+    public function init_modules(){
+        $primal_options = ['views_dir'=> $_ENV['VIEWS_DIR'],
+        'cache_dir'=> $_ENV['CACHE_DIR'],'nodes' => config("primal.nodes")];
+        Primal::getInstance($primal_options);
+        if(isset(self::$config['validation_rules'])){
             $validator = Validator::getInstance();
-            $validator->load($config['validation_rules']);
+            $validator->load(self::$config['validation_rules']);
+        }
+    }
+
+    public function load_router(){
+        $this->middlewares = self::$config['middlewares'];
+        $this->router = Router::getInstance();
+        if(isset(self::$config['routes'])){
+            foreach(self::$config['routes'] as $route => $options){
+                $this->router->register($_ENV['BASE_DIR']."/routes/$route",$options);
+            }
         }
     }
 

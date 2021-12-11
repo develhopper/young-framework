@@ -30,5 +30,10 @@ return $config = [
     "storage" => [
         "public" => realpath(__DIR__."/../public/"),
         "private" => realpath(__DIR__."/../storage/")
+    ],
+    "primal" => [
+        "nodes" => [
+            
+        ]
     ]
 ];

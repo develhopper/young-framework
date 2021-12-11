@@ -16,17 +16,6 @@ class Controller{
     public function __set($key,$value){
         $this->$key=$value;
     }
-
-    public function view($name,$params=[]){
-        $primal=Primal::getInstance(["views_dir"=>getenv('VIEWS_DIR'),
-        "cache_dir"=>getenv('CACHE_DIR')]);
-        return $primal->view($name,$params);
-    }
-
-    public function json(array $arr,$responseCode=200){
-        $json = json_encode($arr,JSON_PRETTY_PRINT);
-        return new Response($json,Response::JSON,$responseCode);
-    }
     
     public function redirect($route){
         header("Location: $route");
