@@ -7,6 +7,7 @@ use app\Http\Requests\FileRequest;
 use Young\Framework\Exceptions\Exception;
 use Young\Framework\Http\Controller;
 use Young\Framework\Http\Request;
+use Young\Framework\Http\Session;
 use Young\Modules\Validation\Validator;
 
 class TestController extends Controller{
@@ -52,8 +53,10 @@ class TestController extends Controller{
     }
 
     public function new_country(CountryRequest $request){
-        if(!$request->valid()){
-            var_dump($request->errors());
+        if($request->isMethod("POST")){
+            if(!$request->valid()){
+                Session::flash("errors", $request->errors());
+            }
         }
         return view("new.html");
     }

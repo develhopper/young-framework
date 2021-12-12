@@ -30,16 +30,16 @@ class Kernel{
     }
 
     public function load_configs($base_path){
-        include $base_path . "/app/Kernel.php";
+        if(!file_exists($base_path."/app/Kernel.php"))
+            throw new Exception("Config file is missing");
         
-        self::$config = $config;
-        
+        self::$config = include $base_path . "/app/Kernel.php";    
         
         if(file_exists($base_path."/.env")){
             Env::setup($base_path."/.env");
         }
-        if(isset($config['environment'])){
-            Env::fromArray($config['environment']);
+        if(isset(self::$config['environment'])){
+            Env::fromArray(self::$config['environment']);
         }
     }
 

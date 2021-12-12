@@ -52,6 +52,12 @@ if(!function_exists('session')){
     }
 }
 
+if(!function_exists('flash')){
+    function flash($key){
+        return Session::flash($key);
+    }
+}
+
 if(!function_exists('die_dump')){   
     function die_dump(...$var){
         echo "<pre>";

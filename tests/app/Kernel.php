@@ -1,6 +1,6 @@
 <?php
 
-return $config = [
+return [
     "namespaces" =>[
             "controllers" => "app\\Http\\Controllers"
     ],
