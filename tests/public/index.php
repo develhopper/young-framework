@@ -10,7 +10,7 @@ $base_dir = realpath(__DIR__."/../");
 
 Bootstrap::bootstrap($base_dir);
 
-$kernel = new Kernel($base_dir);
+$kernel = new Kernel();
 
 $response = $kernel->handle(new Request());
 
