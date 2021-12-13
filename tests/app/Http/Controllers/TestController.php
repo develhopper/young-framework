@@ -8,6 +8,7 @@ use Young\Framework\Exceptions\Exception;
 use Young\Framework\Http\Controller;
 use Young\Framework\Http\Request;
 use Young\Framework\Http\Session;
+use Young\Framework\Utils\Hash;
 use Young\Modules\Validation\Validator;
 
 class TestController extends Controller{
@@ -73,5 +74,16 @@ class TestController extends Controller{
         }else{
             return json(['message' => 'error']);
         }
+    }
+
+    public function hash(){
+        $password = "password";
+
+        $hash = Hash::make($password);
+
+        return [
+            $hash,
+            Hash::verify($password,$hash)
+        ];
     }
 }

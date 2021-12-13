@@ -35,5 +35,11 @@ return [
         "nodes" => [
             
         ]
+        ],
+    "hash" => [
+        "algo" => PASSWORD_BCRYPT,
+        "options" => [
+            "cost" => 10
+        ]
     ]
 ];

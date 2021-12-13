@@ -52,7 +52,7 @@ class Response{
         else if(is_string($this->content)){
             return $this->content;
         }else if(is_array($this->content)){
-            return json($this->content,200);
+            return json_encode($this->content,200);
         }
     }
 }
