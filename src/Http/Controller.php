@@ -16,9 +16,4 @@ class Controller{
     public function __set($key,$value){
         $this->$key=$value;
     }
-    
-    public function redirect($route){
-        header("Location: $route");
-        exit;
-    }
 }

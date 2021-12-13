@@ -36,7 +36,7 @@ if(!function_exists('redirect')){
             header("Location:javascrtipt://history.go(-1)");
             exit;
         }
-        header("Location: ".BASEURL."$route");
+        header("Location: $route");
     }   
 }
 
