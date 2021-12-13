@@ -24,7 +24,16 @@ class Request{
         $_REQUEST[$key]=$value;
     }
 
-    public function all(){
+    public function all($filter = []){
+        if($filter){
+            $result = [];
+            foreach($filter as $key){
+                if(isset($_REQUEST[$key])){
+                    $result[$key]=$_REQUEST[$key];
+                }
+            }
+            return $result;
+        }
         return $_REQUEST;
     }
 
