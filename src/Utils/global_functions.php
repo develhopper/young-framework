@@ -37,6 +37,7 @@ if(!function_exists('redirect')){
             exit;
         }
         header("Location: $route");
+        exit;
     }   
 }
 
