@@ -9,6 +9,11 @@ class Route
     {
         $router=Router::getInstance();
         $route=$router->prefix.$route;
+        $route = str_replace("//","",$route);
+        $route = trim($route,"/");
+        if($route=="")
+            $route="/";
+            
         $regex = preg_replace("/\{\w*\}/i", '(.+)', $route);
         $regex = str_replace("/", "\/", $regex);
         

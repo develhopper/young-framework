@@ -8,7 +8,7 @@ use Young\Framework\Http\Request;
 class Router{
     private static $INSTANCE = null;
     private Request $request;
-    private $routes = [
+    public $routes = [
         "GET" => [],
         "POST" => [],
         "PUT" => [],
