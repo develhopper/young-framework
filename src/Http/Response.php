@@ -1,6 +1,9 @@
 <?php
 namespace Young\Framework\Http;
 
+use Exception;
+use Young\Framework\Exceptions\Exception as ExceptionsException;
+
 class Response{
     const JSON="application/json";
     const HTML="text/html";
@@ -26,8 +29,30 @@ class Response{
 
     public function send(){
         header('Content-Type: '.$this->type);
+        $result = $this->resolve();
         http_response_code($this->code);
-        echo $this->content;
+        echo $result;
         exit;
+    }
+
+    private function resolve(){
+        if($this->content instanceof Exception){
+            if($this->content instanceof ExceptionsException){
+                $this->code == $this->content->code;
+            }else{
+                $this->code = 500;
+            }
+
+            if(getenv('DEBUG')){
+                return "<pre style='color:red'>".$this->content->__toString()."</pre>";
+            }else{
+                return $this->content->getMessage();
+            }
+        }
+        else if(is_string($this->content)){
+            return $this->content;
+        }else if(is_array($this->content)){
+            return json($this->content,200);
+        }
     }
 }

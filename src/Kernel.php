@@ -1,14 +1,11 @@
 <?php
 namespace Young\Framework;;
 
-use Young\Framework\Exceptions\Exception;
 use Young\Framework\Http\Request;
 use Young\Framework\Http\Response;
 use Young\Framework\Router\Router;
 use Young\Modules\Validation\Validator;
-use Denver\Env;
 use Primal\Primal;
-use Young\Framework\Exceptions\HttpException;
 use Young\Framework\Utils\Reflector;
 
 class Kernel{
@@ -17,11 +14,11 @@ class Kernel{
     private $middlewares;
     public static $config;
 
-    public function __construct(string $base_path)
+    public function __construct()
     {
         session_start();
         
-        $this->load_configs($base_path);
+        $this->load_configs($_ENV['BASE_DIR']);
 
         $this->load_functions();
         
@@ -34,13 +31,6 @@ class Kernel{
             throw new Exception("Config file is missing");
         
         self::$config = include $base_path . "/app/Kernel.php";    
-        
-        if(file_exists($base_path."/.env")){
-            Env::setup($base_path."/.env");
-        }
-        if(isset(self::$config['environment'])){
-            Env::fromArray(self::$config['environment']);
-        }
     }
 
     public function load_functions(){
@@ -89,25 +79,18 @@ class Kernel{
 
             if(!$content){
                 $message = "<br>Invalid return type in {$reflector->class}::{$reflector->method}()<br>";
-                throw new Exception($message,500);
+                throw new \Exception($message,500);
             }
             if($content instanceof Response){
                 return $content;
-            }if($content instanceof Exception){
-                throw $content;
             }
             else{
                 $response->content=$content;
             }
             return $response;
-        }catch(Exception $e){
+        }catch(\Exception $e){
             $response = new Response();
-            $response->code = $e->code;
-            if(getenv("DEBUG") && ! $e instanceof HttpException){
-                $response->content = "<pre style='color:red'>".$e->__toString()."</pre>";
-            }else{
-                $response->content = $e->getMessage();
-            }
+            $response->content = $e;
             return $response;
         }
     }

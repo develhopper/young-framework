@@ -15,7 +15,7 @@ class TestController extends Controller{
         $page = ($request->page)?$request->page:1;
         $perpage = ($request->per_page)?$request->per_page:10;
 
-        $countries = (new Country())->select()->paginate($page,$perpage)->getArray();;
+        $countries = (new Country())->select()->paginate($page,$perpage)->getArray();
         return view("index.html", ["title" => "List of countries", "countries" => $countries]);
     }
 
