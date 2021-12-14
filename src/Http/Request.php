@@ -94,4 +94,11 @@ class Request{
         $filesystem = new Filesystem();
         return $filesystem->mv($file,$dst);
     }
+
+    public function header($header,$prefix="HTTP_"){
+        $header = strtoupper($header);
+        if(isset($_SERVER[$prefix.$header])){
+            return $_SERVER[$prefix.$header];
+        }
+    }
 }
