@@ -86,4 +86,8 @@ class TestController extends Controller{
             Hash::verify($password,$hash)
         ];
     }
+
+	public function test(){
+		return json([]);
+	}
 }

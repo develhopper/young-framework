@@ -93,7 +93,6 @@ if(!function_exists('view')){
 
 if(!function_exists('json')){
     function json(array $arr,$responseCode=200){
-        $json = json_encode($arr,JSON_PRETTY_PRINT);
-        return new Response($json,Response::JSON,$responseCode);
+        return new Response($arr,Response::JSON,$responseCode);
     }
 }
